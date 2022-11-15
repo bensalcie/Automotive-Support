@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.bensalcie.droidconautomotive">
+
+    <uses-feature
+        android:name="android.hardware.type.automotive"
+        android:required="true" />
+
+    <application
+        android:icon="@drawable/ic_baseline_directions_car_24"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_baseline_directions_car_24"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AutomotiveSupport" >
+
+
+        <meta-data android:name="com.android.automotive"
+            android:resource="@xml/automotive_app_desc"/>
+
+        <service
+            android:name=".HelloWorldService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="androidx.car.app.CarAppService" />
+            </intent-filter>
+        </service>
+        <activity
+            android:exported="true"
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar"
+            android:name="androidx.car.app.activity.CarAppActivity"
+            android:label="Droidcon 2022 Automotive">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <!-- Additionally include the category below ONLY for navigation apps -->
+                <category android:name="android.intent.category.APP_MAPS" />
+            </intent-filter>
+
+            <!-- Additionally include the intent-filter below ONLY for navigation apps -->
+            <intent-filter>
+                <action android:name="androidx.car.app.action.NAVIGATE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="geo" />
+            </intent-filter>
+
+            <meta-data android:name="distractionOptimized" android:value="true" />
+
+        </activity>
+        <meta-data android:name="androidx.car.app.minCarApiLevel"
+            android:value="1"
+            tools:ignore="MetadataTagInsideApplicationTag" />
+
+    </application>
+
+    <uses-feature
+        android:name="android.software.car.templates_host"
+        android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.screen.portrait"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.screen.landscape"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+
+
+
+    <!--    declares that your app uses the Templates Host to run-->
+
+
+</manifest>
